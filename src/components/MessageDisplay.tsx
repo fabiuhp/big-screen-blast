@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
 
-export const MessageDisplay = ({ message }: {message: {id: string; content: string; duration: number}}) => {
+export const MessageDisplay = (
+  { 
+    message, 
+    onMessageDeleted,
+  }: {
+    message: {
+      id: string;
+      content: string;
+      duration: number;
+    },
+    onMessageDeleted: () => void
+  }) => {
   const [timeLeft, setTimeLeft] = useState(message?.duration ?? 0);
 
   useEffect(() => {
@@ -11,10 +22,16 @@ export const MessageDisplay = ({ message }: {message: {id: string; content: stri
       setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
     }, 1000);
 
-    const timeout = setTimeout(() => {
-      fetch(`https://big-screen-backend.onrender.com/api/messages/${message.id}`, {
-        method: "DELETE",
+    const timeout = setTimeout(async () => {
+      await fetch(`https://big-screen-backend.onrender.com/api/messages/delete`, {
+        method: "POST",
+        body: JSON.stringify(
+          {
+            id: message.id
+          },
+        ),
       });
+      await onMessageDeleted();
     }, message.duration * 1000);
 
     return () => {
@@ -38,7 +55,7 @@ export const MessageDisplay = ({ message }: {message: {id: string; content: stri
       <p className="text-4xl md:text-6xl font-bold text-white leading-tight">
         {message.content}
       </p>
-      <div className="mt-4 text-2xl text-white/80">
+      <div className="mt-4 text-2xl text-white/80" style={{wordBreak: 'break-all'}}>
         Tempo restante: {timeLeft}s
       </div>
     </div>
