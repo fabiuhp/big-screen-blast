@@ -7,16 +7,11 @@ interface MessageDisplayProps {
 }
 
 export const MessageDisplay = ({ message }: MessageDisplayProps) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Auto-play audio/video when the component mounts
-    if (message.type === 'audio' && audioRef.current) {
-      audioRef.current.play().catch(error => {
-        console.error('Failed to play audio:', error);
-      });
-    } else if (message.type === 'video' && videoRef.current) {
+    // Auto-play video when the component mounts
+    if (message.type === 'video' && videoRef.current) {
       videoRef.current.play().catch(error => {
         console.error('Failed to play video:', error);
       });
@@ -33,13 +28,14 @@ export const MessageDisplay = ({ message }: MessageDisplayProps) => {
     );
   }
 
-  if (message.type === 'audio') {
+  if (message.type === 'image') {
     return (
-      <div className="audio-display animate-fade-in">
-        <div className="audio-visualization w-64 h-64 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center animate-pulse">
-          <div className="text-white text-2xl">▶️ Reproduzindo Áudio</div>
-        </div>
-        <audio ref={audioRef} src={message.content} className="hidden" />
+      <div className="image-display animate-fade-in p-4">
+        <img 
+          src={message.content} 
+          alt="Imagem enviada pelo usuário"
+          className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-lg" 
+        />
       </div>
     );
   }

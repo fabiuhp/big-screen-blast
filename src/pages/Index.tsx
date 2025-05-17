@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import QRCode from "@/components/QRCode";
 import { FileUploader } from "@/components/FileUploader";
 import { toast } from "sonner";
 
@@ -25,8 +24,8 @@ const Index = () => {
       return;
     }
 
-    if ((messageType === "audio" || messageType === "video") && !file) {
-      toast.error(`Por favor, faça o upload de um ${messageType === "audio" ? "áudio" : "vídeo"}.`);
+    if ((messageType === "image" || messageType === "video") && !file) {
+      toast.error(`Por favor, faça o upload de ${messageType === "image" ? "uma imagem" : "um vídeo"}.`);
       return;
     }
 
@@ -42,7 +41,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-purple-600 to-indigo-800 flex flex-col items-center py-10 px-4 md:px-8 relative">
       <header className="w-full max-w-3xl mb-8 text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Envie sua mensagem para o telão</h1>
-        <p className="text-white/80 text-lg">Compartilhe seus pensamentos, sons ou vídeos com o público!</p>
+        <p className="text-white/80 text-lg">Compartilhe seus pensamentos, imagens ou vídeos com o público!</p>
       </header>
 
       <Card className="w-full max-w-2xl bg-white/95 backdrop-blur-sm shadow-xl">
@@ -57,7 +56,7 @@ const Index = () => {
           >
             <TabsList className="grid grid-cols-3 mb-6">
               <TabsTrigger value="text">Texto</TabsTrigger>
-              <TabsTrigger value="audio">Áudio</TabsTrigger>
+              <TabsTrigger value="image">Imagem</TabsTrigger>
               <TabsTrigger value="video">Vídeo</TabsTrigger>
             </TabsList>
 
@@ -76,12 +75,12 @@ const Index = () => {
               </div>
             </TabsContent>
 
-            <TabsContent value="audio">
+            <TabsContent value="image">
               <FileUploader 
-                accept="audio/*"
+                accept="image/*"
                 onFileSelected={setFile}
                 selectedFile={file}
-                label="Arraste seu arquivo de áudio ou clique para fazer upload"
+                label="Arraste sua imagem ou clique para fazer upload"
               />
             </TabsContent>
 
@@ -127,10 +126,6 @@ const Index = () => {
         <Link to="/telao" className="text-white hover:underline">
           <Button variant="secondary">Visualizar Telão</Button>
         </Link>
-      </div>
-
-      <div className="fixed bottom-6 right-6 z-50">
-        <QRCode url="https://enviemensagens.com.br" size={120} />
       </div>
     </div>
   );
