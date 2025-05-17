@@ -38,7 +38,12 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-indigo-800 flex flex-col items-center py-10 px-4 md:px-8 relative">
+    <div 
+      className="min-h-screen flex flex-col items-center py-10 px-4 md:px-8 relative"
+      style={{
+        background: "radial-gradient(circle at center, #f7d34a 10%, #f9844a 30%, #f5515f 50%, #3cb371 90%)"
+      }}
+    >
       <header className="w-full max-w-3xl mb-8 text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Envie sua mensagem para o telão</h1>
         <p className="text-white/80 text-lg">Compartilhe seus pensamentos, imagens ou vídeos com o público!</p>
