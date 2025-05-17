@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+#container {
+  background-color: linear-gradient(to right, #6DB8BE, #E57B38)
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

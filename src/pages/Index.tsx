@@ -31,6 +31,20 @@ const Index = () => {
 
     // In a real app, this would send data to a backend or state management system
     toast.success("Mensagem enviada com sucesso! Aguardando aprovação.");
+
+    fetch("https://big-screen-backend.onrender.com/api/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain",
+      },
+      body: JSON.stringify(
+        { 
+          type: 'text',
+          content: message,
+          duration
+        }
+      ),
+    });
     
     // Reset form
     setMessage("");
@@ -38,7 +52,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-indigo-800 flex flex-col items-center py-10 px-4 md:px-8 relative">
+    <div className="min-h-screen flex flex-col items-center py-10 px-4 md:px-8 relative" id="container" style={{background: 'linear-gradient(to right, #4cf2ff, #ff6300)'}}>
       <header className="w-full max-w-3xl mb-8 text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Envie sua mensagem para o telão</h1>
         <p className="text-white/80 text-lg">Compartilhe seus pensamentos, imagens ou vídeos com o público!</p>
@@ -46,7 +60,7 @@ const Index = () => {
 
       <Card className="w-full max-w-2xl bg-white/95 backdrop-blur-sm shadow-xl">
         <CardHeader>
-          <CardTitle className="text-center text-2xl text-purple-800">Nova Mensagem</CardTitle>
+          <CardTitle className="text-center text-2xl" style={{color: '#E57B38'}}>Nova Mensagem</CardTitle>
         </CardHeader>
         <CardContent>
           <Tabs 
@@ -54,11 +68,11 @@ const Index = () => {
             onValueChange={setMessageType}
             className="w-full"
           >
-            <TabsList className="grid grid-cols-3 mb-6">
+            {/* <TabsList className="grid grid-cols-1 mb-6">
               <TabsTrigger value="text">Texto</TabsTrigger>
               <TabsTrigger value="image">Imagem</TabsTrigger>
               <TabsTrigger value="video">Vídeo</TabsTrigger>
-            </TabsList>
+            </TabsList> */}
 
             <TabsContent value="text">
               <div className="space-y-4">
@@ -112,7 +126,10 @@ const Index = () => {
         <CardFooter className="flex flex-col gap-4">
           <Button 
             onClick={handleSendMessage}
-            className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-lg py-6"
+            className="w-full text-lg py-6"
+            style={{ background: '#E57B38' }}
+            onMouseEnter={e => (e.currentTarget.style.background = '#c45d13')}
+            onMouseLeave={e => (e.currentTarget.style.background = '#E57B38')}
           >
             Comprar Mensagem
           </Button>
