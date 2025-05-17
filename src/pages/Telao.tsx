@@ -16,7 +16,7 @@ const Telao = () => {
   useEffect(() => {
     fetch("https://big-screen-backend.onrender.com/api/messages")
       .then(res => res.json())
-      .then(data => setMessages(data))
+      .then(data => setMessages(data.messages))
       .catch(() => setMessages([]));
   }, []);
 
