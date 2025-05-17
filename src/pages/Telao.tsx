@@ -72,7 +72,12 @@ const Telao = () => {
   const currentMessage = messages[currentMessageIndex];
 
   return (
-    <div className="h-screen w-screen bg-black overflow-hidden relative">
+    <div 
+      className="h-screen w-screen overflow-hidden relative" 
+      style={{
+        background: "radial-gradient(circle at center, #f7d34a 10%, #f9844a 30%, #f5515f 50%, #3cb371 90%)"
+      }}
+    >
       {showMessage && currentMessage && (
         <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${showMessage ? 'opacity-100' : 'opacity-0'}`}>
           <MessageDisplay message={currentMessage} />
