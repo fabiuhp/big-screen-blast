@@ -16,18 +16,17 @@ const Telao = () => {
   useEffect(() => {
     fetch("https://big-screen-backend.onrender.com/api/messages")
       .then(res => res.json())
-      .then(data => setMessages(data.messages))
+      .then(data => setMessages(data.messages ?? []))
       .catch(() => setMessages([]));
   }, []);
 
   return (
     <div className="h-screen w-screen bg-black overflow-hidden relative">
-        <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000`}>
-          <MessageDisplay message={messages[messages.length - 1]} />
-        </div>
-      
+      <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000`}>
+        <MessageDisplay message={messages[messages.length - 1]} />
+      </div>
       <div className="absolute bottom-4 right-4 text-white/50 text-sm">
-        enviemensagens.com.br
+        <a href="http://swcriciuma.synapsee.com.br/">http://swcriciuma.synapsee.com.br/</a>
       </div>
     </div>
   );
