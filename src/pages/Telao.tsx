@@ -5,7 +5,7 @@ import { MessageDisplay } from "@/components/MessageDisplay";
 // Types for our messages
 export interface Message {
   id: string;
-  type: 'text' | 'audio' | 'video';
+  type: 'text' | 'image' | 'video';
   content: string; // Text content or file URL
   duration: number; // in seconds
 }
