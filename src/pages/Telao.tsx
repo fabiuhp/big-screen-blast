@@ -30,7 +30,7 @@ const Telao = () => {
 
   const interval = setInterval(() => {
     loadMessages();
-  }, 10000); // 30 segundos
+  }, 10000);
 
   return () => clearInterval(interval);
 }, [messages, loadMessages]);
