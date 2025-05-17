@@ -133,9 +133,6 @@ const Index = () => {
           >
             Enviar Mensagem
           </Button>
-          <div className="text-sm text-center text-gray-500">
-            Sua mensagem será exibida após aprovação e confirmação do pagamento
-          </div>
         </CardFooter>
       </Card>
 
